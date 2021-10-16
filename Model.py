@@ -1,5 +1,4 @@
-import math
-
+import numpy as np
 
 class Model:
     def __init__(self):
@@ -11,7 +10,7 @@ class Model:
             return True
         if Q1[1] == Q2[1]:
             return True
-        if math.abs(Q1[0] - Q2[0]) == math.abs(Q1[1] - Q2[1]):
+        if abs(Q1[0] - Q2[0]) == abs(Q1[1] - Q2[1]):
             return True
         return False
 
@@ -22,14 +21,20 @@ class Model:
         return True
 
     def rec_backt(self, col):
-        if col == 9:
+        if col == 8:
             self.count += 1
+            self.printb()
             return
         for i in range(8):
             if self.isValidPlace(col, i):
                 self.arr[col] = i
-                self.rec_backt(col)
+                self.rec_backt(col + 1)
                 self.arr[col] = -1
+    def printb(self):
+        board = np.array([[0 for _ in range(8)] for _ in range(8)])
+        for i in range(8):
+            board[i][self.arr[i]] = 1
+        print(board)
 
 m = Model()
 m.rec_backt(0)
