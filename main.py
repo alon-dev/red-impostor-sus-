@@ -2,6 +2,8 @@ from tkinter import ttk, Tk
 from view import View
 
 root = Tk()
-root.geometry('1000x1000')
+root.title("8 Queens")
+style = ttk.Style(root)
+style.configure("clam")
 my_view = View(root)
 root.mainloop()
